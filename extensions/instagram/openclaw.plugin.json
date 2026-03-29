@@ -1,0 +1,51 @@
+{
+  "$schema": "https://openclaw.ai/schema/openclaw-plugin.v1.json",
+  "id": "instagram",
+  "name": "Instagram DM",
+  "version": "0.1.0",
+  "description": "Instagram Direct Message channel support for OpenClaw",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "accounts": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "instagramAccountId": { "type": "string" },
+            "facebookPageId": { "type": "string" },
+            "accessToken": { "type": "string", "sensitive": true },
+            "appSecret": { "type": "string", "sensitive": true },
+            "verifyToken": { "type": "string", "sensitive": true },
+            "webhookPath": { "type": "string", "default": "/webhooks/instagram" },
+            "responseWindowHours": { "type": "number", "default": 24 }
+          },
+          "required": ["instagramAccountId", "facebookPageId", "accessToken", "appSecret", "verifyToken"]
+        }
+      }
+    },
+    "required": ["accounts"]
+  },
+  "channel": {
+    "id": "instagram",
+    "label": "Instagram",
+    "selectionLabel": "Instagram Direct",
+    "detailLabel": "Instagram Business",
+    "docsPath": "/channels/instagram",
+    "blurb": "Connect with Instagram Business accounts",
+    "systemImage": "camera.fill",
+    "markdownCapable": true
+  },
+  "install": {
+    "npmSpec": "@openclaw/instagram",
+    "localPath": "extensions/instagram",
+    "defaultChoice": "npm",
+    "minHostVersion": ">=2026.3.28"
+  },
+  "openclaw": {
+    "minVersion": "2026.3.28"
+  }
+}

@@ -5,6 +5,9 @@ export const channelTestRoots = [
   "extensions/slack",
   "extensions/signal",
   "extensions/imessage",
+  "extensions/messenger",
+  "extensions/instagram",
+  "extensions/threads",
   "src/browser",
   "src/line",
 ];

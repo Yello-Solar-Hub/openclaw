@@ -1,0 +1,16 @@
+
+ ERROR  Error: Build failed with 1 error:
+
+[UNRESOLVED_ENTRY] Error: Cannot resolve entry module extensions\meta-common\index.ts.
+
+    at aggregateBindingErrorsIntoJsError (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/rolldown/dist/shared/error-BLhcSyeg.mjs:48:18)
+    at unwrapBindingResult (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/rolldown/dist/shared/error-BLhcSyeg.mjs:18:128)
+    at #build (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/rolldown/dist/shared/rolldown-build-CPrIX9V6.mjs:3313:34)
+    at async build (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/rolldown/dist/index.mjs:42:22)
+    at async Promise.all (index 0)
+    at async buildSingle (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/tsdown/dist/build-DU-BFLB1.mjs:767:19)
+    at async Promise.all (index 0)
+    at async buildWithConfigs (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/tsdown/dist/build-DU-BFLB1.mjs:723:18)
+    at async CAC.<anonymous> (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/tsdown/dist/run.mjs:25:2)
+    at async runCLI (file:///C:/Users/fjuni/Downloads/openclaw/node_modules/tsdown/dist/run.mjs:49:3)
+

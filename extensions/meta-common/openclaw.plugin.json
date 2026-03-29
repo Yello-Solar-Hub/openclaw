@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openclaw.ai/schema/openclaw-plugin.v1.json",
+  "id": "meta-common",
+  "name": "Meta Platforms Common",
+  "version": "0.1.0",
+  "description": "Shared utilities for Meta Platform plugins",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  },
+  "openclaw": {
+    "minVersion": "2026.3.28"
+  }
+}

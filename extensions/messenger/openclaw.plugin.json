@@ -1,0 +1,96 @@
+{
+  "$schema": "https://openclaw.ai/schema/openclaw-plugin.v1.json",
+  "id": "messenger",
+  "name": "Facebook Messenger",
+  "version": "0.1.0",
+  "description": "Facebook Messenger channel support for OpenClaw",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "accounts": {
+        "type": "object",
+        "description": "Messenger account configurations",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Enable this account"
+            },
+            "pageId": {
+              "type": "string",
+              "description": "Facebook Page ID"
+            },
+            "accessToken": {
+              "type": "string",
+              "description": "Page Access Token",
+              "sensitive": true
+            },
+            "appSecret": {
+              "type": "string",
+              "description": "Meta App Secret",
+              "sensitive": true
+            },
+            "verifyToken": {
+              "type": "string",
+              "description": "Webhook verify token",
+              "sensitive": true
+            },
+            "webhookPath": {
+              "type": "string",
+              "default": "/webhooks/messenger",
+              "description": "Webhook callback path"
+            },
+            "sendReadReceipts": {
+              "type": "boolean",
+              "default": true,
+              "description": "Send read receipts"
+            },
+            "showTypingIndicator": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show typing indicator"
+            }
+          },
+          "required": ["pageId", "accessToken", "appSecret", "verifyToken"]
+        }
+      },
+      "dmPolicy": {
+        "type": "string",
+        "enum": ["pairing", "allowlist", "open", "disabled"],
+        "default": "open",
+        "description": "Direct message policy"
+      },
+      "allowFrom": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": ["*"],
+        "description": "Allowed sender IDs (use * for all)"
+      }
+    },
+    "required": ["accounts"]
+  },
+  "channel": {
+    "id": "messenger",
+    "label": "Messenger",
+    "selectionLabel": "Facebook Messenger",
+    "detailLabel": "Messenger Bot",
+    "docsPath": "/channels/messenger",
+    "docsLabel": "messenger",
+    "blurb": "Connect with users on Facebook Messenger",
+    "systemImage": "message.fill",
+    "markdownCapable": true
+  },
+  "install": {
+    "npmSpec": "@openclaw/messenger",
+    "localPath": "extensions/messenger",
+    "defaultChoice": "npm",
+    "minHostVersion": ">=2026.3.28"
+  },
+  "openclaw": {
+    "minVersion": "2026.3.28"
+  }
+}
