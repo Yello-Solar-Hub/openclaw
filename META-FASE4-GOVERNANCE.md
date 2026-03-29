@@ -7,6 +7,7 @@ Use este checklist para garantir que o stack Meta (Messenger, Instagram, Threads
 ---
 
 ## Phase 1: Build & Compilation ✅
+
 - [x] `@openclaw/meta-common` compila sem erros (shared library)
 - [x] `@openclaw/messenger` compila sem erros (import fix aplicado)
 - [x] `@openclaw/instagram` compila sem erros
@@ -19,6 +20,7 @@ Use este checklist para garantir que o stack Meta (Messenger, Instagram, Threads
 ---
 
 ## Phase 2: Test Coverage ✅
+
 - [x] Smoke tests criados para messenger (`extensions/messenger/src/index.test.ts`)
 - [x] Smoke tests criados para instagram (`extensions/instagram/src/index.test.ts`)
 - [x] Smoke tests criados para threads (`extensions/threads/src/index.test.ts`)
@@ -31,6 +33,7 @@ Use este checklist para garantir que o stack Meta (Messenger, Instagram, Threads
 ---
 
 ## Phase 3: Documentation ✅
+
 - [x] META-CONFIG.md status sections atualizados (acompanha realidade: ⏳ Em Desenvolvimento)
 - [x] Credenciais hardcoded removidas da documentação pública
 - [x] `.env.meta.example` criado com placeholders (sem secrets)
@@ -44,6 +47,7 @@ Use este checklist para garantir que o stack Meta (Messenger, Instagram, Threads
 ## Phase 4: Governance & Security
 
 ### 4.1 — Credential Management ⏳
+
 - [ ] `.env.meta` adicionado a `.gitignore` (validar existência)
 - [ ] `.env.meta.example` commited (template com placeholders)
 - [ ] `~/.openclaw/` é local-only (não sincronizado)
@@ -51,6 +55,7 @@ Use este checklist para garantir que o stack Meta (Messenger, Instagram, Threads
 - [ ] Policy: Todas credenciais armazenadas em `~/.openclaw/.env.meta`
 
 **Action Items**:
+
 ```bash
 # Verificar .gitignore
 grep -E "\.env\.meta|openclaw/\.env" .gitignore
@@ -63,6 +68,7 @@ git commit -m "Meta Platforms: Add .env.meta.example with credential placeholder
 ---
 
 ### 4.2 — Channel Policy & Configuration ⏳
+
 - [ ] DM Policy definida por channel:
   - WhatsApp: `dmPolicy: "pairing"` ou `"allowlist"` (com phone numbers)
   - Messenger: `dmPolicy: "open"` (qualquer um pode enviar)
@@ -76,6 +82,7 @@ git commit -m "Meta Platforms: Add .env.meta.example with credential placeholder
 - [ ] Rate limits configurados por channel
 
 **Reference**:
+
 ```json5
 // ~/.openclaw/openclaw.json
 {
@@ -100,12 +107,14 @@ git commit -m "Meta Platforms: Add .env.meta.example with credential placeholder
 ```
 
 **Action Items**:
+
 - [ ] Add `openclaw.json` schema docs for channel-specific policies
 - [ ] Implement `channels.validatePolicy()` in plugin lifecycle
 
 ---
 
 ### 4.3 — Webhook Security ⏳
+
 - [ ] HMAC-SHA256 verification obrigatória para Messenger, Instagram, Threads
 - [ ] `META_APP_SECRET` usado para validação
 - [ ] Rate limiting por webhook (Max 1000 req/sec por app)
@@ -114,6 +123,7 @@ git commit -m "Meta Platforms: Add .env.meta.example with credential placeholder
 - [ ] Signed delivery tokens validados
 
 **Evidence in Code**:
+
 ```typescript
 // extensions/meta-common/src/webhook/manager.ts
 export class WebhookManager {
@@ -128,6 +138,7 @@ export class WebhookManager {
 ---
 
 ### 4.4 — Data Privacy & Compliance ⏳
+
 - [ ] GDPR: Usuários podem solicitar dados via `apiDeletionRequest` endpoint
 - [ ] CCPA: Dados californos pagos em 45 dias max
 - [ ] Mensagens criptografadas end-to-end (WhatsApp): Nenhuma armazenagem local
@@ -136,6 +147,7 @@ export class WebhookManager {
 - [ ] Acesso a credenciais logged e monitorado
 
 **Action Items**:
+
 - [ ] Implementar `channels.deleteUserData()` method
 - [ ] Criar `audit-log` middleware para gateway
 - [ ] Document GDPR compliance path
@@ -143,6 +155,7 @@ export class WebhookManager {
 ---
 
 ### 4.5 — OAuth & Token Refresh ⏳
+
 - [ ] Token refresh automático antes de expiração (Messenger, Instagram, Threads)
 - [ ] Refresh token armazenado securely em `~/.openclaw/`
 - [ ] Erro de token expirado dispara re-login flow
@@ -150,6 +163,7 @@ export class WebhookManager {
 - [ ] CSRF protection: State parameter em OAuth authorization (validado)
 
 **Reference**:
+
 ```typescript
 // extensions/meta-common/src/auth/manager.ts
 export class AuthManager {
@@ -164,6 +178,7 @@ export class AuthManager {
 ---
 
 ### 4.6 — Monitoring & Observability ⏳
+
 - [ ] Channel uptime monitoring: Messenger, Instagram, Threads liveness checks
 - [ ] Webhook delivery latency tracked
 - [ ] Failed webhook retries logged com backoff strategy
@@ -172,6 +187,7 @@ export class AuthManager {
 - [ ] Logs aggregated to `~/.openclaw/logs/channels/meta/*.log`
 
 **Implementation Path**:
+
 - [ ] Add `@openclaw/diagnostics-otel` tracing
 - [ ] Export OpenTelemetry metrics to Prometheus
 - [ ] Create dashboard in monitoring stack
@@ -181,6 +197,7 @@ export class AuthManager {
 ## Phase 5: Production Deployment (Post-Testes)
 
 ### 5.1 — Pre-Launch Checklist
+
 - [ ] All tests passing: `pnpm test:channels` ✅
 - [ ] Build passing: `pnpm build` ✅
 - [ ] Staging environment fully tested with real Meta credentials
@@ -189,6 +206,7 @@ export class AuthManager {
 - [ ] Failover tested: Gateway restart, credential rotation, webhook interruption
 
 ### 5.2 — Rollout Strategy
+
 - [ ] Blue-green deployment: Keep WhatsApp ✅ live while rolling out Messenger/Instagram
 - [ ] Feature flags: `features.meta.messenger=alpha` → beta → stable
 - [ ] Gradual user onboarding: 5% → 25% → 100% over 2 weeks
@@ -196,6 +214,7 @@ export class AuthManager {
 - [ ] Runbook prepared for incident response
 
 ### 5.3 — Documentation for Users
+
 - [ ] Setup guide: `docs/channels/messenger.md`, `docs/channels/instagram.md`, `docs/channels/threads.md`
 - [ ] Troubleshooting: Common errors, credential expiration, webhook failures
 - [ ] Best practices: Rate limits, message formatting, media handling
@@ -223,6 +242,7 @@ export class AuthManager {
    - [ ] Setup monitoring/observability pipeline
 
 2. **Run Full Test Suite**:
+
    ```bash
    pnpm test:channels
    pnpm test

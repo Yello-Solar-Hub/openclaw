@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { defineChannelPluginEntry } from "openclaw/plugin-sdk/core";
+import { describe, it, expect } from "vitest";
 
 describe("Messenger Plugin", () => {
   it("should export valid channel plugin entry", async () => {

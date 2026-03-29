@@ -37,6 +37,10 @@ Text is supported everywhere; media and reactions vary by channel.
 - [WhatsApp](/channels/whatsapp) — Most popular; uses Baileys and requires QR pairing.
 - [Zalo](/channels/zalo) — Zalo Bot API; Vietnam's popular messenger (plugin, installed separately).
 - [Zalo Personal](/channels/zalouser) — Zalo personal account via QR login (plugin, installed separately).
+- **Meta Platforms** (shared OAuth + webhooks):
+  - [Facebook Messenger](/channels/messenger) — Facebook Messenger with rich messaging (buttons, templates, 24h session window).
+  - [Instagram Direct](/channels/instagram) — Instagram Business DMs with story mentions.
+  - [Threads](/channels/threads) — Threads API for public conversations and private DMs.
 
 ## Notes
 
